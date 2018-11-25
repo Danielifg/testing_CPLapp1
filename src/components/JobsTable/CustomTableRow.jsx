@@ -1,5 +1,4 @@
 import Radium from 'radium';
-import color from 'color';
 import React from 'react';
 
 

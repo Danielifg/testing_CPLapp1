@@ -31,6 +31,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import './DetailsTable.css'
 
 class DetailsTable extends React.Component {
   state = {
@@ -59,23 +60,21 @@ class DetailsTable extends React.Component {
 
     return (
       detailsData?
-      <Paper className={classes.root} >
-        <section className={classes.tableWrapper} style={{boxShadow:'white'}}>
-          <Table className={classes.table} style={styles.tableWrapper}>
-                  <TableBody style={{overflowX: 'hidden'}}>
+      <div className={classes.root} >
+        
+          <table  >
+                  <TableBody>
                     {detailsData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((details, i) => {
-
                       const renewal = details.cntrctExpryDt? Moment(Date.parse(details.cntrctExpryDt)).subtract(60,'days') : null
                       const daysToRenewal =details.cntrctExpryDt? Moment(details.cntrctExpryDt, "YYYYMMDD").fromNow() : null
 
                       return (
-                        <TableRow style={{maxWidth:'50%'}} key={i}
+                        <TableRow key={i}
                            onClick={() => setDetailsTableProcessingMessage(details)} style={{cursor:'pointer'}}>
-                          <TableCell>
-                                   <ExpansionPanel >
+                          <td>
+                                   <ExpansionPanel className='expansion-panel'>
                                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{borderColor:'transparent'}}>
-                                                <Typography >
-                                                <b>Record</b> {details.jobDtlId}{"   "}
+                                                <Typography >                                                
                                                  <b>PolNom</b> {details.polNo} {"   "}
                                                  <b>Status</b> {details.prcsdCd} {"   "}
                                                  <b>Days to Renewal</b> {daysToRenewal ? daysToRenewal : `Not available`}
@@ -83,10 +82,10 @@ class DetailsTable extends React.Component {
                                         </ExpansionPanelSummary>
                                         <ExpansionPanelDetails>
                                           <Typography style={{textAlign:'left'}}>
-                                                  <b>Id</b> {details.jobDtlId}
-                                                  <br/>  <b>PolNom</b> {details.polNo}
-                                                  <br/>  <b>Status</b> {details.prcsdCd}
-                                                  <br/>  <b>Expiracy</b> {details.cntrctExpryDt}
+                                                          <b>Record</b> {details.jobDtlId}
+                                                  <br/>   <b>PolNom</b> {details.polNo}
+                                                  <br/>   <b>Status</b> {details.prcsdCd}
+                                                  <br/>   <b>Expiracy</b> {details.cntrctExpryDt}
                                                   <br/>   <b>Renewal</b> {renewal ? format(renewal) :`Not available`}
                                                   <br/>   <b>Days to Renewal</b> {daysToRenewal ? daysToRenewal : `Not available`}
 
@@ -94,7 +93,7 @@ class DetailsTable extends React.Component {
                                               </Typography>
                                         </ExpansionPanelDetails>
                                       </ExpansionPanel>
-                             </TableCell>
+                             </td>
                         </TableRow>
                 );
               })}
@@ -117,9 +116,11 @@ class DetailsTable extends React.Component {
                 />
               </TableRow>
             </TableFooter>
-          </Table>
-        </section>
-      </Paper>:<div style={{display:'flex', justifyContent:'center'}}>
+          </table>
+        
+      </div>
+      :
+      <div style={{display:'flex', justifyContent:'center'}}>
                      <Loader />
                </div>
     );

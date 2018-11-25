@@ -48,10 +48,6 @@ _handleLogin = () => {
 }
 
 render(){
-
-  const { theme, children } = this.props;
-  const { showPassword, password, userName } = this.state;
-
           return (
                     <LoginForm _handleChange = {this._handleChange}
                                _handleLogin  = {this._handleLogin}
@@ -67,7 +63,6 @@ render(){
 
 
 function mapStateToProps(state){
-  console.log(state)
   return{
       showDetails: state.showDetails,
       details: state.details,

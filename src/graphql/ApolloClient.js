@@ -8,8 +8,8 @@ import { onError } from "apollo-link-error";
 
 
 
-//export const SERVER = 'http://localhost:4000'
-export const SERVER = 'http://localhost:8080/graphql'
+export const SERVER = 'http://localhost:4000'
+//export const SERVER = 'http://localhost:8080/graphql'
 const cache = new InMemoryCache();
 
 

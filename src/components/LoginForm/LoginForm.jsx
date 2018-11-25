@@ -29,7 +29,7 @@ render(){
                                        password,
                                        classes,
                                      } = this.props;
-                                     console.log(userName)
+                                     
     return(
       <Grid container style={{flexWrap:'wrap',marginTop:'5em'}} >
         <Grid item xs={12} sm={6} className={classes.grid_container_2}>

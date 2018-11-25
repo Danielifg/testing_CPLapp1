@@ -1,0 +1,30 @@
+th{
+   font-weight: lighter !important;  
+   width: 0px !important;
+   font: -webkit-control !important;
+}
+.default-btn{
+    background-color: white !important;
+    color: black;
+}
+.styledTableRow{
+    align-content: center;
+    padding: 0px;
+    cursor: pointer;
+}
+.root{
+    width: 100%;
+    margin-top:1px;
+    overflow-x: scroll;
+    border-color:transparent;
+    
+  }
+  .table {
+    min-width: 400;
+   padding:0px !important;
+  }
+  .table-head{
+      border: solid 1px black;
+
+  }
+  
