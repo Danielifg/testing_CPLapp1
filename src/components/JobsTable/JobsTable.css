@@ -22,6 +22,7 @@ th{
   .table {
     min-width: 400;
    padding:0px !important;
+   width: 100%;
   }
   .table-head{
       border: solid 1px black;

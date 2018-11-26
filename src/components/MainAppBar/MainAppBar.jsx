@@ -20,6 +20,7 @@ import { request, GraphQLClient } from 'graphql-request'
 import  {FETCH_MAIN_DATA}  from '../../graphql/Queries'
 import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
+import Chip from '@material-ui/core/Chip';
 
 import { setReportsData, setSearchFlag, setSearchDates,
           set_Jobs_Filtered_Data,
@@ -125,19 +126,20 @@ _handleFilterData(){
         this.props.set_Jobs_Filtered_Data(this.props.reportsData.data.getJobs)
     }
   }
+  _handleDelete(){
+    alert('delte');
+  }
 
   render(){
 
       const { classes, setFilterQuery,showDetails } = this.props;
       const { selectOptions,filter_error_color,filter_placeholder, dates_error_color } = this.state
 
-
   return (
-
           <AppBar >
                 <Toolbar style={styles.container}>
 
-
+                <div style={{width:'60%'}}>
                   <div style={styles.searchSection}>
                         <input type="text" style={{height:'18px',fontSize:'20px', marginRight:'5px',
                          color:'black', borderColor:'transparent', backgroundColor:`${filter_error_color}`, borderRadius:'5px'}}
@@ -164,16 +166,33 @@ _handleFilterData(){
                                <IconButton className={classes.button} style={styles.searchBtn}
                                            onClick={() => this._handleFilterData()}>
                                          <SearchIcon fontSize='inherit' />
-                               </IconButton>
+                               </IconButton>                                                           
                   </div>
+
+                             <div style={{marginTop:'10px'}}>
+                                  <Chip color="primary" label={this.state.query} onDelete={this._handleDelete} variant="outlined"
+                                  style={{height:'25px'}} /> 
+                                   <Chip color="primary" label={this.state.query} onDelete={this._handleDelete} variant="outlined"
+                                  style={{height:'25px'}} /> 
+                                   <Chip color="primary" label={this.state.query} onDelete={this._handleDelete} variant="outlined"
+                                  style={{height:'25px'}} /> 
+                                   <Chip color="primary" label={this.state.query} onDelete={this._handleDelete} variant="outlined"
+                                  style={{height:'25px'}} /> 
+                                   <Chip color="primary" label={this.state.query} onDelete={this._handleDelete} variant="outlined"
+                                  style={{height:'25px'}} /> 
+
+                              </div>
+               </div>
+
                   <div style={styles.barDatesSection}>
 
                               <div>
                                  <input type="date"
-                                        style={{height:'20px',fontSize:'20px', color:'#d3d3d3',borderColor:'transparent',
-                                                backgroundColor:`${dates_error_color}`,borderRadius:'5px'}}
-                                                onChange={(event) => this.setState({from: event.target.value})}
-                                                onFocus={() => this.setState({dates_error_color:'#FFF'})}/>
+                                        style={{height:'20px',fontSize:'12px', width:'13em', color:'black',
+                                                borderColor:'transparent',backgroundColor:`${dates_error_color}`,
+                                                borderRadius:'5px'}}
+                                        onChange={(event) => this.setState({from: event.target.value})}
+                                        onFocus={() => this.setState({dates_error_color:'#FFF'})}/>
                               </div>
 
                               <div>
@@ -182,8 +201,9 @@ _handleFilterData(){
 
                               <div>
                                 <input type="date"
-                                style={{height:'20px',fontSize:'20px', color:'#d3d3d3',borderColor:'transparent',
-                                        backgroundColor:`${dates_error_color}`,borderRadius:'5px'}}
+                                        style={{height:'20px',fontSize:'12px', width:'13em', color:'black',
+                                                borderColor:'transparent', backgroundColor:`${dates_error_color}`,
+                                                borderRadius:'5px'}}
                                         onChange={(event) => this.setState({to: event.target.value})}/>
                               </div>
 
@@ -195,41 +215,47 @@ _handleFilterData(){
                         </div>
                 </Toolbar>
               </AppBar>
-
   );
  }
 }
 
 const styles = {
-  container: {
-    width:'100%',
-    display: 'flex',
+   container: {
+    height:'2em',
+   alignSelf:'center',
+   padding:'0px',
+   width:'100%',
+   display: 'flex',
    flexWrap: 'wrap',
    justifyContent:'space-evenly',
    position:"fixed",
    backgroundColor:"#f5f5f5",
-    borderTop:'5px solid #3f51b5',
-    boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)'
+   borderTop:'5px solid #3f51b5',
+   boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)'
   },
   searchSection: {
-   width:'40%',
+    marginTop:'2em',
+   width:'100%',
    alignItems: 'center',
    justifyContent:'space-evenly',
    display: 'flex',
    flexWrap:'wrap',
    marginLeft:'0px',
 },
-  filterInput:{
-    width:'20em'
-  },
   barDatesSection:{
     justifyContent:'space-evenly',
-    width:'50%',
+    width:'35%',
     display: 'flex',
     flexWrap: 'wrap',
     marginLeft:'0px',
     borderRight:'solid 2px #d3d3d3',
     alignItems:'center'
+  },
+  filterInput:{
+    width:'20em'
+  },
+  input_dates:{
+
   },
   searchBtn:{
     border:'solid .5px  #d3d3d3',
