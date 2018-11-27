@@ -22,6 +22,7 @@ import  {FETCH_MAIN_DATA}  from '../../graphql/Queries'
 import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
 import Chip from '@material-ui/core/Chip';
+import CChips from '../CChips/CChips';
 import './MainAppBar.css'
 
 import { setReportsData, setSearchFlag, setSearchDates,
@@ -138,6 +139,8 @@ _handleFilterData(){
       const { selectOptions,filter_error_color,filter_placeholder, dates_error_color } = this.state
 
   return (
+
+    <div style={{position:'fixed'}}>
           <AppBar >
                 <div style={styles.container}>
 
@@ -195,8 +198,10 @@ _handleFilterData(){
                                          <p style={{color:'rgb(33,150,243)',marginTop: '4px'}}> SEARCH </p>
                                   </button>
                         </div>
-                </div>
+                </div>      
               </AppBar>
+              <CChips/>
+      </div>
   );
  }
 }

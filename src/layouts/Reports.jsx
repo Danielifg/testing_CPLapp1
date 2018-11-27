@@ -19,6 +19,7 @@ import MainAppBar from '../components/MainAppBar/MainAppBar'
 import Grid from '@material-ui/core/Grid';
 
 
+
 class Reports extends React.Component {
   constructor(props){
     super(props)
@@ -56,6 +57,7 @@ class Reports extends React.Component {
       <Grid container  >
           <Grid item xs={12}  >
                 <MainAppBar/>
+                
           </Grid>
           <Grid item lg={12} style={{marginTop:'2em'}}>
           <div className={classes.root}>
@@ -93,7 +95,7 @@ const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     width: '100%',
-    marginTop:'3em'
+    marginTop:'2.5rem'
   },
   loader:{
     marginTop:'5em',
