@@ -1,0 +1,11 @@
+.search-btn{
+    background-color: transparent;
+    border: solid 1px rgb(33,150,243);
+    border-radius: 5px;
+    padding:0px;
+    cursor: pointer;
+    width: 7em;
+    height: 2em;
+    margin-top: 6px;
+}
+

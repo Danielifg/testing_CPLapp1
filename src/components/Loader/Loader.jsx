@@ -2,21 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import purple from '@material-ui/core/colors/purple';
 
-const styles = theme => ({
-  progress: {
-    margin: theme.spacing.unit * 2,
+const styles = {
+  root: {
+    flexGrow: 1,
   },
-});
+  colorPrimary: {
+    backgroundColor: '#B2DFDB',
+  },
+  barColorPrimary: {
+    backgroundColor: '#00695C',
+  },
+};
+
 
 
 function Loader(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-        <CircularProgress className={classes.progress} color="secondary" />
+      <LinearProgress style={{backgroundColor:'#2196f3'}}/>
+      <br />
+      <LinearProgress color="secondary" />
+      <br />
+      <LinearProgress
+        classes={{ colorPrimary: classes.colorPrimary, barColorPrimary: classes.barColorPrimary }}
+      />
     </div>
   );
 }

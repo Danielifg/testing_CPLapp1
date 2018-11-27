@@ -157,7 +157,7 @@ const CustomTableCell = withStyles(theme => ({
 const styles = theme => ({
   root: {
     width: '100%',
-    marginTop:'2px',
+    marginTop:'2em',
     overflowX: 'scroll',
     boxShadow:'white',
       textAlign:'center'

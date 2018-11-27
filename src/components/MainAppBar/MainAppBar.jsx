@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import SearchIcon from '@material-ui/icons/Search'
+import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import moment from 'moment';
 import FormControl from '@material-ui/core/FormControl';
@@ -21,6 +22,7 @@ import  {FETCH_MAIN_DATA}  from '../../graphql/Queries'
 import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
 import Chip from '@material-ui/core/Chip';
+import './MainAppBar.css'
 
 import { setReportsData, setSearchFlag, setSearchDates,
           set_Jobs_Filtered_Data,
@@ -39,13 +41,13 @@ class MainAppBar extends React.Component {
       from: null,
       to: null,
       searching:false,
-      displayedOptions : ["PolicyNumber","Status","Job Details","Job Id","Contract Expiracy Date",'Job Type','Processed',"Execution Message","Job Details Id","UUID"],
+      displayedOptions : ["PolicyNumber","Status","Job Details","Job Id","Contract Exp Date",'Job Type','Processed',"Execution Message","Job Details Id","UUID"],
       selectOptions : {
                 "polNo":"PolicyNumber",
                 "exctnSts":"Status",
                 "jobDetailses":"Job Details",
                 "jobMstrId":"Job Id",
-                "cntrctExpryDt":"Contract Expiracy Date",
+                "cntrctExpryDt":"Contract Exp Date",
                 "jobMstrNm":'Job Type',
                 "lstUpdtTm":'Job Last Update Time',
                 "prcsdCntr":'Processed',
@@ -137,17 +139,12 @@ _handleFilterData(){
 
   return (
           <AppBar >
-                <Toolbar style={styles.container}>
+                <div style={styles.container}>
 
-                <div style={{width:'60%'}}>
-                  <div style={styles.searchSection}>
-                        <input type="text" style={{height:'18px',fontSize:'20px', marginRight:'5px',
-                         color:'black', borderColor:'transparent', backgroundColor:`${filter_error_color}`, borderRadius:'5px'}}
-                               onChange={(event) => this._handleEmptyFilter(event) }
-                               placeholder={filter_placeholder}/>
-
-                               <FormControl required className={classes.formControl}>
-                                     <Select
+                <div style={{width:'40%'}}>
+                  <div style={styles.searchSection}>                        
+                               <FormControl required>
+                                     <Select 
                                        native
                                        value={this.state.queryProperty}
                                        onChange={(event)=> this.setState({queryProperty: event.target.value})}
@@ -159,29 +156,17 @@ _handleFilterData(){
                                                         <h3>{key}</h3><hr/>
                                                    </option>
                                             ))}
-                                      </Select>
-                                     <FormHelperText>Required</FormHelperText>
+                                      </Select>                                  
                                  </FormControl>
 
-                               <IconButton className={classes.button} style={styles.searchBtn}
-                                           onClick={() => this._handleFilterData()}>
-                                         <SearchIcon fontSize='inherit' />
-                               </IconButton>                                                           
+                                 <input type="text" style={styles.filter_input}
+                               onChange={(event) => this._handleEmptyFilter(event) }
+                               placeholder={filter_placeholder}/>
+
+                              <button onClick={() => this._handleFilterData()}className='search-btn'>
+                                <p style={{color:'rgb(33,150,243)',marginTop: '3px'}}> SEARCH </p>
+                              </button>                                                       
                   </div>
-
-                             <div style={{marginTop:'10px'}}>
-                                  <Chip color="primary" label={this.state.query} onDelete={this._handleDelete} variant="outlined"
-                                  style={{height:'25px'}} /> 
-                                   <Chip color="primary" label={this.state.query} onDelete={this._handleDelete} variant="outlined"
-                                  style={{height:'25px'}} /> 
-                                   <Chip color="primary" label={this.state.query} onDelete={this._handleDelete} variant="outlined"
-                                  style={{height:'25px'}} /> 
-                                   <Chip color="primary" label={this.state.query} onDelete={this._handleDelete} variant="outlined"
-                                  style={{height:'25px'}} /> 
-                                   <Chip color="primary" label={this.state.query} onDelete={this._handleDelete} variant="outlined"
-                                  style={{height:'25px'}} /> 
-
-                              </div>
                </div>
 
                   <div style={styles.barDatesSection}>
@@ -206,14 +191,11 @@ _handleFilterData(){
                                                 borderRadius:'5px'}}
                                         onChange={(event) => this.setState({to: event.target.value})}/>
                               </div>
-
-                                  <IconButton className={classes.button}
-                                              style={styles.searchBtn}
-                                              onClick={() => this._handleDataLookUp()}>
-                                            <SearchIcon fontSize='inherit' />
-                                  </IconButton>
+                                  <button onClick={() => this._handleDataLookUp()} className='search-btn' style={{marginTop:'-1px'}}>
+                                         <p style={{color:'rgb(33,150,243)',marginTop: '4px'}}> SEARCH </p>
+                                  </button>
                         </div>
-                </Toolbar>
+                </div>
               </AppBar>
   );
  }
@@ -221,20 +203,19 @@ _handleFilterData(){
 
 const styles = {
    container: {
-    height:'2em',
+   height:'2.4rem',
    alignSelf:'center',
    padding:'0px',
    width:'100%',
    display: 'flex',
    flexWrap: 'wrap',
-   justifyContent:'space-evenly',
+   justifyContent:'space-around',
    position:"fixed",
    backgroundColor:"#f5f5f5",
-   borderTop:'5px solid #3f51b5',
+   borderTop:'3px solid #2196f3',
    boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)'
   },
-  searchSection: {
-    marginTop:'2em',
+  searchSection: {  
    width:'100%',
    alignItems: 'center',
    justifyContent:'space-evenly',
@@ -248,8 +229,8 @@ const styles = {
     display: 'flex',
     flexWrap: 'wrap',
     marginLeft:'0px',
-    borderRight:'solid 2px #d3d3d3',
-    alignItems:'center'
+    alignItems:'center',
+    marginBottom:'2px'
   },
   filterInput:{
     width:'20em'
@@ -261,11 +242,16 @@ const styles = {
     border:'solid .5px  #d3d3d3',
     borderRight:'solid 1px #d3d3d3'
   },
-  logo:{
-    marginLeft:'0px',
-    width:'10em',
-    padding:'1px'
-  }
+filter_input:{
+    height:'15px',
+    fontSize:'15px',
+    marginRight:'5px',
+    color:'black', 
+    borderColor:'transparent',
+    //backgroundColor:`${filter_error_color}`, 
+    borderRadius:'5px',
+    marginTop:'5px'
+ }
 };
 
 function mapStateToProps(state){

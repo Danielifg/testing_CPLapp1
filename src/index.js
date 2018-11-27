@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { hot } from 'react-hot-loader'
 import Login from './layouts/Login'
 import { ApolloProvider } from 'react-apollo'
-import MainAppBar from './components/MainAppBar/MainAppBar'
+
 import Reports from './layouts/Reports'
 import { BrowserRouter,Route,Switch } from "react-router-dom"
 import { Provider } from 'react-redux';
@@ -38,21 +38,8 @@ class App extends React.Component {
         <Provider store={store}>
             <BrowserRouter>
                   <Switch>
-                          <Route exact path="/" component={ Login } />
-                          <Route exact path="/:userName" render={() => (
-                                          <div>
-                                              <Grid container  >
-                                                  <Grid item xs={12}  >
-                                                  <MainAppBar/>
-                                                  </Grid>
-
-                                                  <Grid item lg={12} style={{marginTop:'2em'}}>
-                                                      <Reports/>
-                                                  </Grid>
-
-                                              </Grid>
-                                          </div>
-                              )}/>
+                       <Route exact path="/" component={ Login } />
+                       <Route exact path="/:userName" component={ Reports }/>
                     </Switch>
             </BrowserRouter>
          </Provider>

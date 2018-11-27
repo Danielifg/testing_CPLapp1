@@ -2,6 +2,7 @@ th{
    font-weight: lighter !important;  
    width: 0px !important;
    font: -webkit-control !important;
+
 }
 .default-btn{
     background-color: white !important;
@@ -25,7 +26,7 @@ th{
    width: 100%;
   }
   .table-head{
-      border: solid 1px black;
+    border-bottom: solid 1px #d3d3d3;
 
   }
   

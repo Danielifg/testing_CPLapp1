@@ -15,6 +15,7 @@ import gql from 'graphql-tag'
 import { FETCH_MAIN_DATA }  from '../graphql/Queries'
 import  Loader from '../components/Loader/Loader'
 import { setSearchFlag } from '../redux/actions'
+import MainAppBar from '../components/MainAppBar/MainAppBar'
 import Grid from '@material-ui/core/Grid';
 
 
@@ -39,40 +40,50 @@ class Reports extends React.Component {
     this.setState({ value: index });
   };
 
+  handleReaload(){
+      if (performance.navigation.type == 1) {
+        this.props.history.push(`/`)      
+    }
+  }
+
   render() {
 
-    const { classes, theme,showDetails,reportsData,searching,setSearchFlag,
-            jobs_filtered_data,details,reports_data_to_display} = this.props
-
+    const { classes, reportsData,jobs_filtered_data} = this.props
     let ACTUAL_DATA = jobs_filtered_data ? jobs_filtered_data : reportsData
-
-//    console.log(searching)
-  //  console.log(jobs_filtered_data)
-    // console.log(reportsData)
+    //this.handleReaload();
     return (
-      <div className={classes.root}>
-             {!ACTUAL_DATA?
-                 <div style={{display:'flex',justifyContent:'center'}}>
-                        <Loader />
-                 </div>
-                :
-                <div>
-                        <div style={{display:'flex', justifyContent:'space-evenly'}}>
-                                  <Grid item xs={5}>
-                                                 <div>
-                                                    <JobsTable rows={ACTUAL_DATA}/>
-                                                    <JobPreview/>
-                                                 </div>
-                                   </Grid>
-                                    <Grid item xs={6}>
-                                                 <div >
-                                                    <DetailsTable style={{overflowX: 'hidden'}} />
-                                                  </div>
-                                    </Grid>
-                          </div>
+      <div>
+      <Grid container  >
+          <Grid item xs={12}  >
+                <MainAppBar/>
+          </Grid>
+          <Grid item lg={12} style={{marginTop:'2em'}}>
+          <div className={classes.root}>
+                {!ACTUAL_DATA?
+                    <div style={{display:'flex',justifyContent:'center'}}>
+                            <Loader />
                     </div>
-              }
-      </div>
+                    :
+                    <div>
+                            <div style={{display:'flex', justifyContent:'space-evenly'}}>
+                                      <Grid item xs={5}>
+                                                    <div>
+                                                        <JobsTable rows={ACTUAL_DATA}/>
+                                                        <JobPreview/>
+                                                    </div>
+                                      </Grid>
+                                        <Grid item xs={6}>
+                                                    <div >
+                                                        <DetailsTable style={{overflowX: 'hidden'}} />
+                                                      </div>
+                                        </Grid>
+                              </div>
+                        </div>
+                        }
+                  </div>
+                </Grid>
+            </Grid>
+        </div>
     );
   }
 }
