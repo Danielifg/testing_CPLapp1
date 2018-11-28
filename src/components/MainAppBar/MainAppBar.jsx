@@ -140,7 +140,7 @@ _handleFilterData(){
 
   return (
 
-    <div style={{position:'fixed'}}>
+    <div style={{position:'fixed', zIndex:'5px'}}>
           <AppBar >
                 <div style={styles.container}>
 
@@ -156,7 +156,7 @@ _handleFilterData(){
                                        <option value="" />
                                        {this.state.displayedOptions.map(key => (
                                                   <option key={key} value={key} >
-                                                        <h3>{key}</h3><hr/>
+                                                        {key}
                                                    </option>
                                             ))}
                                       </Select>                                  

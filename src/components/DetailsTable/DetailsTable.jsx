@@ -62,7 +62,7 @@ class DetailsTable extends React.Component {
       detailsData?
       <div className={classes.root} >
         
-          <table  >
+          <table style={{width:'100%'}} >
                   <TableBody>
                     {detailsData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((details, i) => {
                       const renewal = details.cntrctExpryDt? Moment(Date.parse(details.cntrctExpryDt)).subtract(60,'days') : null

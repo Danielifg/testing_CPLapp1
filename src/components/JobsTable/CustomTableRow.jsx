@@ -23,7 +23,8 @@ const radium_styles = {
   },
     alignContent:'center',
     padding:'0px',
-    cursor:'pointer'
+    cursor:'pointer',
+  textAlign:'center'
 
   }
 }

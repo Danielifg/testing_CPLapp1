@@ -59,7 +59,7 @@ function showTables( state = initState, action){
       case SET_REPORTS_DATA:
             return{
               ...state,
-              reportsData: action.reportsData.data.getJobs.filter(i => i.jobMstrNm === "Conversion")
+              reportsData: action.reportsData.data.getJobs.filter(i => i.jobMstrNm === "Conversion" | i.jobMstrNm === "Renewal")
                             .sort((b, a) => {  return new Date(a.exctnStrtTm) - new Date(b.exctnStrtTm) })
             }
       case SET_SEARCH_FLAG:

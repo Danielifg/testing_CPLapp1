@@ -17,13 +17,14 @@ constructor(props){
       showPassword: false,
       userName:'',
       searching:false,
+      from : format(moment(new Date()).subtract(1,'months')),
+      to : format(new Date()),      
     }
-    const from = format(moment(new Date()).subtract(1,'months'));
-    const to = format(new Date());
-    this.props.setSearchDates(from,to)
 }
+
 _handleChange = prop => event => {
  this.setState({ [prop]: event.target.value });
+ this.props.setSearchDates(this.state.from,this.state.to);
 };
 
 _handleMouseDownPassword = event => {

@@ -9,10 +9,10 @@ function CChips (filters, _onDeleteFilter){
                 
                     <Chip  className="custom-chip" 
                              label="Awesome"
-                            onDelete={" "} variant="outlined" />
-                    <Chip  className="custom-chip" onDelete={" "} variant="outlined" 
+                           variant="outlined" />
+                    <Chip  className="custom-chip" variant="outlined" 
                           label="Awesome dev-v"/>
-                    <Chip  className="custom-chip"  onDelete={" "} variant="outlined"
+                    <Chip  className="custom-chip"  variant="outlined"
                              label="AwesomeCip" />
               </div>
         )

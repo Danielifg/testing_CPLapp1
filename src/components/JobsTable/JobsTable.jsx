@@ -14,7 +14,10 @@ import {showDetailsTable_redux, setJobsTableOtherDetails,
         set_JobDetails_with_new_errors} from '../../redux/actions'
 import { connect } from 'react-redux'
 import TablePaginationActions from '../DetailsTable/TablePaginationActions'
-import CustomTableRow from  './CustomTableRow'
+import CustomTableRow from  './CustomTableRow';
+import  filter_differences  from '../../redux/Filters.js'
+
+
 import './JobsTable.css'
 
 
@@ -46,12 +49,14 @@ class JobsTable extends React.Component {
 
     let emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
     let rows_data = rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+    filter_differences(rows_data);
   
   { if (rows_data){
     return (
       <div className='root'>
         <div ref="container">
           <table className='table'>
+            <TableBody className='tbody'>
                 <tr className='table-head'>              
                     <th >  Job Id       </th>
                     <th >  Date    { /* <SortIcon style={{cursor:'pointer'}} /> */} </th >                      
@@ -59,7 +64,7 @@ class JobsTable extends React.Component {
                     <th >  New Errors   </th>
                     <th >  Fixed Errors </th>                
                 </tr>
-            <TableBody className='container'>
+          
             {rows_data.map((value,index,arr) => {
 
               const current = value;
@@ -102,10 +107,10 @@ class JobsTable extends React.Component {
 
                 return (
                   <CustomTableRow className='styledTableRow' key={index}>
-                        <th onClick = {()=> this._handleDetailsSetters(value)} > { value.jobMstrId   } </th>
-                        <th onClick = {()=> this._handleDetailsSetters(value)} > { value.exctnStrtTm } </th>
-                        <th onClick = {()=> this._handleDetailsSetters(value)} > { value.prcsdCntr   } </th>
-                        <th >
+                        <td onClick = {()=> this._handleDetailsSetters(value)} > { value.jobMstrId   } </td>
+                        <td onClick = {()=> this._handleDetailsSetters(value)} > { value.exctnStrtTm } </td>
+                        <td onClick = {()=> this._handleDetailsSetters(value)} > { value.prcsdCntr   } </td>
+                        <td >
                                                 {differences.length >0 ?
                                                   <Button variant="contained" color="secondary" size="small"
                                                             onClick={() => showDetailsTable_redux(differences)}>
@@ -115,8 +120,8 @@ class JobsTable extends React.Component {
                                                                   ✓ 
                                                                  </Button>
                                                 }
-                        </th>
-                        <th >
+                        </td>
+                        <td >
                                                 {fixedErros.length >0 ?
                                                   <Button variant="contained" 
                                                    style={{backgroundColor:'limegreen'}} size="small"
@@ -125,10 +130,9 @@ class JobsTable extends React.Component {
                                                     </Button> : <Button variant="contained"                                                      
                                                                  className='default-btn'> 
                                                                   ✘ 
-                                                                </Button>
-                                                    
+                                                                </Button>                                                   
                                                 }
-                        </th>
+                        </td>
                   </CustomTableRow>
                 );
               })}

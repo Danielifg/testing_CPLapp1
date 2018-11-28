@@ -42,6 +42,7 @@ render(){
 
                           <ul>
                             <li><b> Job ID : </b>             {otherDetails.jobMstrId} </li>
+                            <li><b> Job Type : </b>             {otherDetails.jobMstrNm } </li>                            
                             <li> <b>  Updated   Time :  </b>  {otherDetails.lstUpdtTm} </li>
                             <li><b>   Job start Time :  </b>  {otherDetails.strtTm} </li>
                             <li> <b>  Job end   Time :  </b>  {otherDetails.endTm} </li>
