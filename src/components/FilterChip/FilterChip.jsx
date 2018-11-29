@@ -3,19 +3,19 @@ import './CChips.css'
 import Chip from '@material-ui/core/Chip';
 
 
-function CChips (filters, _onDeleteFilter){
+function FilterChip (filters, _onDeleteFilter,query){
+
         return(
             <div className="under-bar">
-                
                     <Chip  className="custom-chip" 
-                             label="Awesome"
+                             label={"query"}
                            variant="outlined" />
                     <Chip  className="custom-chip" variant="outlined" 
-                          label="Awesome dev-v"/>
+                          label={"query"}/>
                     <Chip  className="custom-chip"  variant="outlined"
-                             label="AwesomeCip" />
+                             label={"query"}/>
               </div>
         )
 }
 
-export default CChips;
+export default FilterChip;

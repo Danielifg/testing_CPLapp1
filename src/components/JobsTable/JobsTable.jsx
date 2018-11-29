@@ -15,7 +15,7 @@ import {showDetailsTable_redux, setJobsTableOtherDetails,
 import { connect } from 'react-redux'
 import TablePaginationActions from '../DetailsTable/TablePaginationActions'
 import CustomTableRow from  './CustomTableRow';
-import  filter_differences  from '../../redux/Filters.js'
+
 
 
 import './JobsTable.css'
@@ -49,7 +49,7 @@ class JobsTable extends React.Component {
 
     let emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
     let rows_data = rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
-    filter_differences(rows_data);
+    
   
   { if (rows_data){
     return (

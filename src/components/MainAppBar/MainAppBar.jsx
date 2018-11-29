@@ -84,18 +84,30 @@ class MainAppBar extends React.Component {
 _handleFilterData(){
       const { queryProperty, query, selectOptions} = this.state
       const { reportsData, showDetails ,set_Jobs_Filtered_Data,
-            jobs_filtered_data,hideDetailsTable_redux}= this.props
+            jobs_filtered_data, hideDetailsTable_redux}= this.props
 
       let filterSelectData = [];
+      let filterChips = [];
+      let data_to_use;
       const selectedProp = '';
       hideDetailsTable_redux()
 
+if(filterChips.length <= 0){
+  data_to_use = reportsData;
+}else{
+  data_to_use = filterChips[filterChips.length-1]
+}
+
   Object.keys(selectOptions).forEach(function(key) {
-      if(selectOptions[key] === queryProperty){ filterSelectData = reportsData.filter(i => i[key] === query )
-              if(filterSelectData.length <= 0){ reportsData.map(function(job){
+      if(selectOptions[key] === queryProperty){ filterSelectData = data_to_use.filter(i => i[key] === query )
+              if(filterSelectData.length <= 0){ data_to_use.map(function(job){
                        job.jobDetailses.map(function(details){
                          if(details[key] === query){ job.jobDetailses = job.jobDetailses.filter(i => i[key] === query)
                             filterSelectData.push(job) }})})}}
+                        
+                  filterChips.push(filterSelectData);
+
+
         })
 
 
@@ -106,15 +118,11 @@ _handleFilterData(){
        }
 
        if(filterSelectData.length <= 0  & jobs_filtered_data != 'undefined'){
-         filterSelectData = reportsData
+         filterSelectData = data_to_use         
        }
 
-
+      
        set_Jobs_Filtered_Data(filterSelectData)
-       console.log(jobs_filtered_data)
-       console.log(reportsData)
-       console.log(queryProperty)
-       console.log(query)
   }
 
 
