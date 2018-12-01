@@ -50,7 +50,7 @@ class Reports extends React.Component {
   render() {
 
     const { classes, reportsData,jobs_filtered_data} = this.props
-    let ACTUAL_DATA = jobs_filtered_data ? jobs_filtered_data : reportsData
+    let ACTUAL_DATA = jobs_filtered_data ? jobs_filtered_data.data : reportsData
     //this.handleReaload();
     return (
       <div>

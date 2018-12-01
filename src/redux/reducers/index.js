@@ -29,10 +29,15 @@ function showTables( state = initState, action){
                   ...state,
               details_with_new_errors:  state.errors.push(action.jobDetailsNewErrors)
             }
-    case SET_JOBS_FILTERED_DATA:
+    case SET_JOBS_FILTERED_DATA:    
+         let filterChips = state[action.jobs_filtered_data] || [];
+         const obj = new Object();
+         obj.tag = action.tag;
+         obj.data = action.jobs_filtered_data
+         filterChips.push(obj);    
             return{
-                        ...state,
-              jobs_filtered_data:  action.jobs_filtered_data
+              ...state,
+              jobs_filtered_data:  filterChips[filterChips.length-1]
             }
     case SET_DETAILS_FILTERED_DATA:
             return{

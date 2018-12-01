@@ -22,7 +22,7 @@ import  {FETCH_MAIN_DATA}  from '../../graphql/Queries'
 import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
 import Chip from '@material-ui/core/Chip';
-import CChips from '../CChips/CChips';
+import FilterChip from '../FilterChip/FilterChip';
 import './MainAppBar.css'
 
 import { setReportsData, setSearchFlag, setSearchDates,
@@ -60,7 +60,7 @@ class MainAppBar extends React.Component {
                  "lstUpdtTm":" Job Last Update Time",
                  "prcsdCd":" ",
                  "uuid" :" UUID"
-               }
+               }               
     }
   }
 
@@ -82,34 +82,38 @@ class MainAppBar extends React.Component {
 
 // ** ***********************  FILTER  ******************************  **
 _handleFilterData(){
+  
       const { queryProperty, query, selectOptions} = this.state
       const { reportsData, showDetails ,set_Jobs_Filtered_Data,
             jobs_filtered_data, hideDetailsTable_redux}= this.props
 
-      let filterSelectData = [];
-      let filterChips = [];
-      let data_to_use;
+            console.log(this.props.jobs_filtered_data)
+
+      let filterSelectData = [];            
       const selectedProp = '';
       hideDetailsTable_redux()
-
-if(filterChips.length <= 0){
-  data_to_use = reportsData;
-}else{
-  data_to_use = filterChips[filterChips.length-1]
-}
+      const data_to_use = jobs_filtered_data? jobs_filtered_data.data : reportsData
 
   Object.keys(selectOptions).forEach(function(key) {
-      if(selectOptions[key] === queryProperty){ filterSelectData = data_to_use.filter(i => i[key] === query )
-              if(filterSelectData.length <= 0){ data_to_use.map(function(job){
-                       job.jobDetailses.map(function(details){
-                         if(details[key] === query){ job.jobDetailses = job.jobDetailses.filter(i => i[key] === query)
-                            filterSelectData.push(job) }})})}}
-                        
-                  filterChips.push(filterSelectData);
-
-
-        })
-
+      if(selectOptions[key] === queryProperty){
+           
+        filterSelectData = data_to_use.filter(i => i[key] === query)
+        
+        if(filterSelectData.length <= 0){ data_to_use.map(function(job){
+        
+          job.jobDetailses.map(function(details){
+        
+            if(details[key] === query){
+        
+              job.jobDetailses = job.jobDetailses.filter(i => i[key] === query)
+        
+              filterSelectData.push(job)                         
+            }        
+          })     
+        })        
+      }      
+    }                                
+  })
 
        // Error Handler Empty filter resultset
        if(filterSelectData.length <= 0){
@@ -122,7 +126,8 @@ if(filterChips.length <= 0){
        }
 
       
-       set_Jobs_Filtered_Data(filterSelectData)
+       set_Jobs_Filtered_Data(query, filterSelectData)
+       console.log(this.props.jobs_filtered_data)
   }
 
 
@@ -208,7 +213,10 @@ if(filterChips.length <= 0){
                         </div>
                 </div>      
               </AppBar>
-              <CChips/>
+              {this.props.jobs_filtered_data?              
+                    <FilterChip query={this.state.query}/>
+                :null}
+              
       </div>
   );
  }

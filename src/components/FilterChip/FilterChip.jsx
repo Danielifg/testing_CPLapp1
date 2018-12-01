@@ -1,19 +1,18 @@
 import React from 'react';
-import './CChips.css'
+import './FilterChip.css'
 import Chip from '@material-ui/core/Chip';
 
 
-function FilterChip (filters, _onDeleteFilter,query){
-
+function FilterChip ({query}){
+        function onDeleteChip(tag){
+              alert(tag)
+        }
         return(
             <div className="under-bar">
                     <Chip  className="custom-chip" 
-                             label={"query"}
+                             label={query}
+                             onDelete={()=>onDeleteChip(query)}
                            variant="outlined" />
-                    <Chip  className="custom-chip" variant="outlined" 
-                          label={"query"}/>
-                    <Chip  className="custom-chip"  variant="outlined"
-                             label={"query"}/>
               </div>
         )
 }

@@ -21,9 +21,10 @@ const set_Reports_Data_To_Display = ( reports_data_to_display ) =>({
 })
 
 //  FILTERS
-const set_Jobs_Filtered_Data = (jobs_filtered_data) => ({
+const set_Jobs_Filtered_Data = (tag,jobs_filtered_data) => ({
       type: SET_JOBS_FILTERED_DATA,
-      jobs_filtered_data: jobs_filtered_data
+      jobs_filtered_data: jobs_filtered_data,
+      tag:tag
   })
 
 const set_JobDetails_with_new_errors = (jobDetailsNewErrors) =>{
